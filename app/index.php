@@ -22,68 +22,86 @@
 	<!--Styles Bootstrap 5.3.0-alpha1-->
 	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
 	<script type="text/javascript" src="../assets/js/bootstrap.bundle.js"></script>
+	<!--Styles Bootstrap Icons-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+	<!--Styles Icons Fontawesome -->
 	<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
-
 </head>
 <body>
-	<header>
-		
-	</header>
-	<main class="pt-5 pb-5 form-signin w-100 m-auto">
-		
-		<form action="/action_page.php">
-			<div class="mb-3 mt-3">
-				<label for="email" class="form-label">Email:</label>
-				<input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+	<main class="form-signin w-100 m-auto">
+
+		<div class="card">
+			<div class="card-header">
+				<div class="text-center">
+					<img class="mb-2" src="../assets/img/logosena.png" alt="Logo Sena" style="height: 48px">
+					<span class="float-end">
+						<a href="../"><i class="text-danger bi bi-x-circle-fill"></i>
+						</a>
+					</span>
+					<h1 class="display-5 mb-0">Inicio de Sesión</h1>
+					<div class="subheading-1 mb-2">ASEM</div>
+
+				</div>
+				<div class="card-body">
+					<form action="/action_page.php">
+						<div class="input-group mb-3 mt-3">
+							<span class="input-group-text" id="basic-addon1"><i class="bi bi-person-circle"></i></span>
+							<input type="user" class="form-control" id="user" placeholder="Enter user" name="user" aria-describedby="basic-addon1">
+						</div>
+						<div class="mb-3">
+							<label for="pwd" class="form-label">Password:</label>
+							<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+						</div>
+						<div class="form-check mb-3">
+							<label class="form-check-label">
+								<input class="form-check-input" type="checkbox" name="remember"> Remember me
+							</label>
+						</div>
+						<button type="submit" class="btn btn-primary">Submit</button>
+						<a href="../">Volver</a>
+						<a href="reg_adm">Registrarse</a>
+					</form>
+				</div>
+				<div class="card-footer">
+					<footer class="text-center text-white pt-5">
+						<!-- Grid container -->
+						<div class="container p-4 pb-0">
+							<!-- Section: Social media -->
+							<section class="mb-4">
+								<!-- Facebook -->
+								<a class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+
+								<!-- Twitter -->
+								<a class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="#!"	role="button"><i class="fab fa-twitter"></i></a>
+
+								<!-- Google -->
+								<a class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i class="fab fa-google"></i></a>
+
+								<!-- Instagram -->
+								<a class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!"	role="button"><i class="fab fa-instagram"></i></a>
+
+								<!-- Linkedin -->
+								<a class="btn text-white btn-floating m-1" style="background-color: #0082ca;" href="#!"	role="button"><i class="fab fa-linkedin-in"></i></a>
+
+								<!-- Github -->
+								<a class="btn text-white btn-floating m-1" style="background-color: #333333;" href="#!"	role="button"><i class="fab fa-github"></i></a>
+							</section>
+							<!-- Section: Social media -->
+						</div>
+						<!-- Grid container -->
+
+						<!-- Copyright -->
+						<div class="text-center p-3 bg-dark">
+							© 2023 Copyright:
+							<a class="text-white" href="https://mdbootstrap.com/">Majosi</a>
+						</div>
+						<!-- Copyright -->
+					</footer>
+				</div>
+
 			</div>
-			<div class="mb-3">
-				<label for="pwd" class="form-label">Password:</label>
-				<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-			</div>
-			<div class="form-check mb-3">
-				<label class="form-check-label">
-					<input class="form-check-input" type="checkbox" name="remember"> Remember me
-				</label>
-			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
-			<a href="../">Volver</a>
-			<a href="reg_adm.php">Registrarse</a>
-		</form>
 
-	</main>
-	<footer class="text-center text-white pt-5">
-		<!-- Grid container -->
-		<div class="container p-4 pb-0">
-			<!-- Section: Social media -->
-			<section class="mb-4">
-				<!-- Facebook -->
-				<a class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+		</main>
 
-				<!-- Twitter -->
-				<a class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="#!"	role="button"><i class="fab fa-twitter"></i></a>
-
-				<!-- Google -->
-				<a class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i class="fab fa-google"></i></a>
-
-				<!-- Instagram -->
-				<a class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!"	role="button"><i class="fab fa-instagram"></i></a>
-
-				<!-- Linkedin -->
-				<a class="btn text-white btn-floating m-1" style="background-color: #0082ca;" href="#!"	role="button"><i class="fab fa-linkedin-in"></i></a>
-				
-				<!-- Github -->
-				<a class="btn text-white btn-floating m-1" style="background-color: #333333;" href="#!"	role="button"><i class="fab fa-github"></i></a>
-			</section>
-			<!-- Section: Social media -->
-		</div>
-		<!-- Grid container -->
-
-		<!-- Copyright -->
-		<div class="text-center p-3 bg-dark">
-			© 2023 Copyright:
-			<a class="text-white" href="https://mdbootstrap.com/">Majosi</a>
-		</div>
-		<!-- Copyright -->
-	</footer>
-</body>
-</html>
+	</body>
+	</html>
