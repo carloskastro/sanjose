@@ -21,6 +21,7 @@
 
 	<!--Styles Bootstrap 5.3.0-alpha1-->
 	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
 	<script type="text/javascript" src="../assets/js/bootstrap.bundle.js"></script>
 	<!--Styles Bootstrap Icons-->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
@@ -33,7 +34,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="text-center">
-					<img class="mb-2" src="../assets/img/logosena.png" alt="Logo Sena" style="height: 48px">
+					<img class="mb-2" src="../media/img/logo1.png" alt="Logo Sena" style="height: 48px">
 					<span class="float-end">
 						<a href="../"><i class="text-danger bi bi-x-circle-fill"></i>
 						</a>
@@ -45,11 +46,11 @@
 				<div class="card-body">
 					<form action="/action_page.php">
 						<div class="input-group mb-3 mt-3">
-							<span class="input-group-text" id="basic-addon1"><i class="bi bi-person-circle"></i></span>
-							<input type="user" class="form-control" id="user" placeholder="Enter user" name="user" aria-describedby="basic-addon1">
+							<span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
+							<input type="user" class="form-control" id="user" placeholder="Ingrese su usuario" name="user" aria-describedby="basic-addon1">
 						</div>
-						<div class="mb-3">
-							<label for="pwd" class="form-label">Password:</label>
+						<div class="input-group mb-3">
+							<span class="input-group-text" id="basic-addon1"><i class="bi bi-key"></i></span>
 							<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
 						</div>
 						<div class="form-check mb-3">
