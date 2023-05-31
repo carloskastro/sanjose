@@ -15,9 +15,9 @@
 	<meta name="keyworks" content="SENA, sena, Sena, Aplicativo, web, aplicativo">
 	
 	<!--Favicon-->
-	<link href="../media/img/logo1.png" rel="icon" type="image/x-icon">
-	<link href="../media/img/logo1.png" rel="apple-touch-icon" type="image/png">
-	<link href="../media/img/logo1.png" rel="apple-touch-startup-image" type="image/png">
+	<link href="../media/img/logo.png" rel="icon" type="image/x-icon">
+	<link href="../media/img/logo.png" rel="apple-touch-icon" type="image/png">
+	<link href="../media/img/logo.png" rel="apple-touch-startup-image" type="image/png">
 
 	<!--Styles Bootstrap 5.3.0-alpha1-->
 	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
@@ -28,13 +28,39 @@
 	<!--Styles Icons Fontawesome -->
 	<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="p-5">
+	<?php
+	require_once 'conn.php';
+	session_start();
+
+	if (isset($_POST['validar'])) {
+		 //función para consultar info a la base de datos en SQL
+		$result = $conn->prepare('SELECT * FROM estudiante WHERE user=?');
+		$result->bindParam(1,$_POST['user']);
+		$result->execute();
+
+		$data = $result->fetch(PDO::FETCH_ASSOC);
+
+		if (is_array($data)) {
+			
+			if ( password_verify($_POST['pass'],$data['pass']) ) {
+				$_SESSION['adm'] = $data['idestudiante'];
+				header('location: homeadm.php');
+			} else {
+				echo "Contraseña incorrecta";
+			}
+		}else{
+			echo "Datos incorrectos";
+		}
+	}
+
+	?>
 	<main class="form-signin w-100 m-auto">
 
 		<div class="card">
 			<div class="card-header">
 				<div class="text-center">
-					<img class="mb-2" src="../media/img/logo1.png" alt="Logo Sena" style="height: 48px">
+					<img class="mb-2" src="../media/img/logo.png" alt="Logo Sena" style="height: 48px">
 					<span class="float-end">
 						<a href="../"><i class="text-danger bi bi-x-circle-fill"></i>
 						</a>
@@ -44,60 +70,28 @@
 
 				</div>
 				<div class="card-body">
-					<form action="/action_page.php">
+					<form action="" method="post" enctype="application/x-www-form-urlencoded">
 						<div class="input-group mb-3 mt-3">
 							<span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
-							<input type="user" class="form-control" id="user" placeholder="Ingrese su usuario" name="user" aria-describedby="basic-addon1">
+							<input type="text" class="form-control"placeholder="Ingrese su usuario" name="user" aria-describedby="basic-addon1" required>
 						</div>
 						<div class="input-group mb-3">
 							<span class="input-group-text" id="basic-addon1"><i class="bi bi-key"></i></span>
-							<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+							<input type="password" class="form-control"placeholder="Ingrese su contraseña" name="pass" required>
 						</div>
 						<div class="form-check mb-3">
 							<label class="form-check-label">
-								<input class="form-check-input" type="checkbox" name="remember"> Remember me
+								<input class="form-check-input" type="checkbox" name="remember" required> Recuerdáme
 							</label>
 						</div>
-						<button type="submit" class="btn btn-primary">Submit</button>
-						<a href="../">Volver</a>
-						<a href="reg_adm">Registrarse</a>
+						<button type="submit" class="w-100 btn btn-primary" name="validar">Entrar</button>
 					</form>
 				</div>
-				<div class="card-footer">
-					<footer class="text-center text-white pt-5">
-						<!-- Grid container -->
-						<div class="container p-4 pb-0">
-							<!-- Section: Social media -->
-							<section class="mb-4">
-								<!-- Facebook -->
-								<a class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-
-								<!-- Twitter -->
-								<a class="btn text-white btn-floating m-1" style="background-color: #55acee;" href="#!"	role="button"><i class="fab fa-twitter"></i></a>
-
-								<!-- Google -->
-								<a class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i class="fab fa-google"></i></a>
-
-								<!-- Instagram -->
-								<a class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!"	role="button"><i class="fab fa-instagram"></i></a>
-
-								<!-- Linkedin -->
-								<a class="btn text-white btn-floating m-1" style="background-color: #0082ca;" href="#!"	role="button"><i class="fab fa-linkedin-in"></i></a>
-
-								<!-- Github -->
-								<a class="btn text-white btn-floating m-1" style="background-color: #333333;" href="#!"	role="button"><i class="fab fa-github"></i></a>
-							</section>
-							<!-- Section: Social media -->
-						</div>
-						<!-- Grid container -->
-
-						<!-- Copyright -->
-						<div class="text-center p-3 bg-dark">
-							© 2023 Copyright:
-							<a class="text-white" href="https://mdbootstrap.com/">Majosi</a>
-						</div>
-						<!-- Copyright -->
-					</footer>
+				<div class="card-footer bg-light">
+					<div class="clearfix">
+					  <span class="float-start"><a href="../">Volver</a></span>
+					  <span class="float-end"><a href="reg_adm">Registrarse</a></span>
+					</div>
 				</div>
 
 			</div>

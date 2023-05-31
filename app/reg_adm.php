@@ -29,6 +29,10 @@
 	<?php
 	require_once 'conn.php';
 
+/*Función para insertar datos*/
+	$mi=null;
+	$color=null;
+
 	if (isset($_POST['guardar'])) {
 		$insert=$conn->prepare('INSERT INTO estudiante (documento,nombre,apellido,direccion,telefono,fnac,user,pass) VALUES (?,?,?,?,?,?,?,?)');
 		$insert->bindParam(1,$_POST['documento']);
@@ -38,21 +42,23 @@
 		$insert->bindParam(5,$_POST['telefono']);
 		$insert->bindParam(6,$_POST['fnac']);
 		$insert->bindParam(7,$_POST['user']);
-		$insert->bindParam(8,$_POST['pass']);
+		$pass=password_hash($_POST['pass'], PASSWORD_BCRYPT);
+		$insert->bindParam(8,$pass);
 
 		if ($insert->execute()) {
-			echo "Datos registrados";
+			$mi="Datos registrados";
+			$color="success";
 		}else{
-			echo "Datos no registrados";
+			$mi="Datos no registrados";
+			$color="danger";
 		}
-
-
 	}
+/*Función para insertar datos*/
 	?>
 	
 	<main class="container pt-5 pb-5 form-signin w-100 m-auto">
 		<?php
-		if ($msg1) {
+		if (isset($msg1)) {
 			echo '
 			<div class="alert alert-success alert-dismissible">
 			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
@@ -65,9 +71,18 @@
 			<strong>'.$msg2.'!</strong>
 			</div>';
 		}
+
+		/*Confirmación de registro de datos*/
+		if ($mi!='' && $color!='') {
+			echo '
+			<div class="alert alert-'.$color.' alert-dismissible">
+			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+			<strong>'.$mi.'!</strong>
+			</div>';
+		}
 		?>
 		
-		<main class="form-reg w-100 m-auto">
+		<div class="form-reg w-100 m-auto">
 			<div class="card">
 				<div class="card-header">
 					<img class="mb-2" src="../media/img/logo.png" alt="Logo Sena" style="height: 48px">
@@ -85,13 +100,13 @@
 							<div class="col">
 								<div class="mb-3 mt-3">
 									<label for="nombres" class="form-label">Nombres:</label>
-									<input type="text" class="form-control" placeholder="Ingrese sus nombres" name="nombre">
+									<input type="text" class="form-control" placeholder="Ingrese sus nombres" name="nombre" required>
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3 mt-3">
 									<label for="apellidos" class="form-label">Apellidos:</label>
-									<input type="text" class="form-control"  placeholder="Ingrese sus apellidos" name="apellido">
+									<input type="text" class="form-control"  placeholder="Ingrese sus apellidos" name="apellido" required>
 								</div>
 							</div>
 						</div>
@@ -99,13 +114,13 @@
 							<div class="col">
 								<div class="mb-3 mt-3">
 									<label for="direccion" class="form-label">Dirección:</label>
-									<input type="text" class="form-control" placeholder="Ingrese sus nombres" name="direccion">
+									<input type="text" class="form-control" placeholder="Ingrese sus nombres" name="direccion" required>
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3 mt-3">
 									<label for="apellidos" class="form-label">Telefono:</label>
-									<input type="text" class="form-control"  placeholder="Ingrese sus apellidos" name="telefono" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+									<input type="text" class="form-control"  placeholder="Ingrese sus apellidos" name="telefono" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
 									</div>
 								</div>
 							</div>
@@ -113,28 +128,28 @@
 								<div class="col">
 									<div class="mb-3 mt-3">
 										<label for="cedula" class="form-label">Cédula:</label>
-										<input type="text" class="form-control"placeholder="Ingrese su número de documento" name="documento" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+										<input type="text" class="form-control"placeholder="Ingrese su número de documento" name="documento" onkeypress="return event.charCode >= 48 && event.charCode <= 57" required>
 										</div>
 									</div>
 									<div class="col">
 										<div class="mb-3 mt-3">
 											<label for="fnacimiento" class="form-label">Fecha Nac:</label>
-											<input type="date" class="form-control"  placeholder="Ingrese sus apellidos" name="fnac">
+											<input type="date" class="form-control"  placeholder="Ingrese sus apellidos" name="fnac" required>
 										</div>
 									</div>
 								</div>
 
 								<div class="mb-3 mt-3">
 									<label for="usuario" class="form-label">Usuario:</label>
-									<input type="text" class="form-control" placeholder="Ingrese su usuario" name="user">
+									<input type="text" class="form-control" placeholder="Ingrese su usuario" name="user" required>
 								</div>
 								<div class="mb-3">
 									<label for="contraseña" class="form-label">Contraseña:</label>
-									<input type="password" class="form-control" placeholder="Ingrese su contraseña" name="pass">
+									<input type="password" class="form-control" placeholder="Ingrese su contraseña" name="pass" required>
 								</div>
 								<div class="form-check mb-3">
 									<label class="form-check-label">
-										<input class="form-check-input" type="checkbox" name="remember"> Recuerdame
+										<input class="form-check-input" type="checkbox" name="remember" required> Recuerdame
 									</label>
 								</div>
 								<div class="btn-group">
@@ -147,6 +162,8 @@
 							© 2023 Copyright Majosi
 						</div>
 					</div>
-				</main>
+				</div>
+			</main>
+			
 			</body>
 			</html>
