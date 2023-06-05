@@ -34,7 +34,7 @@
 	session_start();
 
 	if (isset($_SESSION['adm'])) {
-		$search=$conn->prepare('SELECT * FROM estudiante WHERE idestudiante=?');
+		$search=$conn->prepare('SELECT * FROM administrador WHERE idadministrador=?');
 		$search->bindParam(1,$_SESSION['adm']);
 		$search->execute();
 		
@@ -59,7 +59,7 @@
 							<a class="nav-link" href="#">Inicio</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">Link1</a>
+							<a class="nav-link" href="?page=tableadm">Administrador</a>
 						</li>
 					</ul>
 					<div class="d-flex">
@@ -76,6 +76,13 @@
 			</div>
 		</nav>
 	</header>
+	<main class="pt-5">
+		<?php
+		$page= isset($_GET['page']) ? strtolower($_GET['page']) : 'homeadm';
+		require_once './'.$page.'.php';
+
+		?>
+	</main>
 
 <?php
 }else{

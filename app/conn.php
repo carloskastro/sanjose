@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "mibasededatos";
+$dbname = "sena";
 $msg1=null;
 $msg2=null;
 

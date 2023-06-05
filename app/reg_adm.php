@@ -15,9 +15,9 @@
 	<meta name="keyworks" content="SENA, sena, Sena, Aplicativo, web, aplicativo">
 	
 	<!--Favicon-->
-	<link href="../media/img/logo1.png" rel="icon" type="image/x-icon">
-	<link href="../media/img/logo1.png" rel="apple-touch-icon" type="image/png">
-	<link href="../media/img/logo1.png" rel="apple-touch-startup-image" type="image/png">
+	<link href="../media/img/logo.png" rel="icon" type="image/x-icon">
+	<link href="../media/img/logo.png" rel="apple-touch-icon" type="image/png">
+	<link href="../media/img/logo.png" rel="apple-touch-startup-image" type="image/png">
 
 	<!--Styles Bootstrap 5.3.0-alpha1-->
 	<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
@@ -25,7 +25,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 </head>
-<body>
+<body class="py-5 bg-dark">
 	<?php
 	require_once 'conn.php';
 
@@ -34,7 +34,7 @@
 	$color=null;
 
 	if (isset($_POST['guardar'])) {
-		$insert=$conn->prepare('INSERT INTO estudiante (documento,nombre,apellido,direccion,telefono,fnac,user,pass) VALUES (?,?,?,?,?,?,?,?)');
+		$insert=$conn->prepare('INSERT INTO administrador (documento,nombre,apellido,direccion,telefono,fnac,user,pass) VALUES (?,?,?,?,?,?,?,?)');
 		$insert->bindParam(1,$_POST['documento']);
 		$insert->bindParam(2,$_POST['nombre']);
 		$insert->bindParam(3,$_POST['apellido']);
@@ -56,9 +56,9 @@
 /*Función para insertar datos*/
 	?>
 	
-	<main class="container pt-5 pb-5 form-signin w-100 m-auto">
+	<main class="container py-5 form-signin w-100 m-auto">
 		<?php
-		if (isset($msg1)) {
+		if (isset($msg2)) {
 			echo '
 			<div class="alert alert-success alert-dismissible">
 			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
@@ -87,7 +87,7 @@
 				<div class="card-header">
 					<img class="mb-2" src="../media/img/logo.png" alt="Logo Sena" style="height: 48px">
 					<span class="float-end">
-						<a href="./"><kbd class="bg-danger"><i class="bi bi-x-lg"></i></kbd></a>
+						<a href="./"><i class="text-danger bi bi-x-circle-fill"></i></a>
 					</span>
 					<div class="text-center">
 						<h1 class="display-6 mb-0">Registro de Usuario</h1>

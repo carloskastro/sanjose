@@ -28,14 +28,14 @@
 	<!--Styles Icons Fontawesome -->
 	<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
 </head>
-<body class="p-5">
+<body class="py-5 bg-dark">
 	<?php
 	require_once 'conn.php';
 	session_start();
 
 	if (isset($_POST['validar'])) {
 		 //función para consultar info a la base de datos en SQL
-		$result = $conn->prepare('SELECT * FROM estudiante WHERE user=?');
+		$result = $conn->prepare('SELECT * FROM administrador WHERE user=?');
 		$result->bindParam(1,$_POST['user']);
 		$result->execute();
 
@@ -44,8 +44,8 @@
 		if (is_array($data)) {
 			
 			if ( password_verify($_POST['pass'],$data['pass']) ) {
-				$_SESSION['adm'] = $data['idestudiante'];
-				header('location: homeadm.php');
+				$_SESSION['adm'] = $data['idadministrador'];
+				header('location: homeadm');
 			} else {
 				echo "Contraseña incorrecta";
 			}
@@ -55,48 +55,50 @@
 	}
 
 	?>
-	<main class="form-signin w-100 m-auto">
+	<main class="pt-5 form-signin w-100 m-auto">
 
 		<div class="card">
 			<div class="card-header">
-				<div class="text-center">
-					<img class="mb-2" src="../media/img/logo.png" alt="Logo Sena" style="height: 48px">
-					<span class="float-end">
-						<a href="../"><i class="text-danger bi bi-x-circle-fill"></i>
-						</a>
-					</span>
-					<h1 class="display-5 mb-0">Inicio de Sesión</h1>
-					<div class="subheading-1 mb-2">ASEM</div>
-
-				</div>
-				<div class="card-body">
-					<form action="" method="post" enctype="application/x-www-form-urlencoded">
-						<div class="input-group mb-3 mt-3">
-							<span class="input-group-text" id="basic-addon1"><i class="bi bi-person-fill"></i></span>
-							<input type="text" class="form-control"placeholder="Ingrese su usuario" name="user" aria-describedby="basic-addon1" required>
-						</div>
-						<div class="input-group mb-3">
-							<span class="input-group-text" id="basic-addon1"><i class="bi bi-key"></i></span>
-							<input type="password" class="form-control"placeholder="Ingrese su contraseña" name="pass" required>
-						</div>
-						<div class="form-check mb-3">
-							<label class="form-check-label">
-								<input class="form-check-input" type="checkbox" name="remember" required> Recuerdáme
-							</label>
-						</div>
-						<button type="submit" class="w-100 btn btn-primary" name="validar">Entrar</button>
-					</form>
-				</div>
-				<div class="card-footer bg-light">
-					<div class="clearfix">
-					  <span class="float-start"><a href="../">Volver</a></span>
-					  <span class="float-end"><a href="reg_adm">Registrarse</a></span>
+				<div class="row">
+					<div class="col"></div>
+					<div class="col text-center">
+						<img class="mb-2" src="../media/img/logo.png" alt="Logo Sena" style="height: 48px">
+					</div>
+					<div class="col text-end" aria-hidden="true">
+						<a href="../" style="display:none"><i class="text-danger bi bi-x-circle-fill"></i></a>
 					</div>
 				</div>
-
+			<div class="text-center">
+				<h1 class="display-5 mb-0">Inicio de Sesión</h1>
+				<div class="subheading-1 mb-2">ASEM</div>
+			</div>
+			<div class="card-body">
+				<form action="" method="post" enctype="application/x-www-form-urlencoded">
+					<div class="input-group mb-3 mt-3">
+						<span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+						<input type="text" class="form-control"placeholder="Ingrese su usuario" name="user" aria-describedby="basic-addon1" required>
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text"><i class="bi bi-key"></i></span>
+						<input type="password" class="form-control"placeholder="Ingrese su contraseña" name="pass" required>
+					</div>
+					<div class="form-check mb-3">
+						<label class="form-check-label">
+							<input class="form-check-input" type="checkbox" name="remember" required> Recuerdáme
+						</label>
+					</div>
+					<button type="submit" class="w-100 btn btn-primary" name="validar">Entrar</button>
+				</form>
+			</div>
+			<div class="card-footer bg-light">
+				<div class="clearfix">
+					<span class="float-end"><a href="reg_adm">Registrarse</a></span>
+				</div>
 			</div>
 
-		</main>
+		</div>
 
-	</body>
-	</html>
+	</main>
+
+</body>
+</html>
