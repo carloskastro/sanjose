@@ -1,3 +1,6 @@
+<?php  
+if (is_array($data)) {
+?>
 <div class="p-5">
 	
 
@@ -29,5 +32,10 @@
 		
 	</table>
 
-
 </div>
+
+<?php
+}else{
+	header('location: ./');
+}
+?>
