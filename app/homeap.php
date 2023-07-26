@@ -34,7 +34,7 @@
 	session_start();
 
 	if (isset($_SESSION['tipouser'])) {
-		$search=$conn->prepare('SELECT * FROM administrador WHERE tipouser=?');
+		$search=$conn->prepare('SELECT * FROM aprendiz WHERE tipouser=?');
 		$search->bindParam(1,$_SESSION['tipouser']);
 		$search->execute();
 		$data=$search->fetch(PDO::FETCH_ASSOC);
@@ -77,7 +77,7 @@
 	</header>
 	<main class="pt-5">
 		<?php
-		$page= isset($_GET['page']) ? strtolower($_GET['page']) : 'homeadm';
+		$page= isset($_GET['page']) ? strtolower($_GET['page']) : 'homeap';
 		require_once './'.$page.'.php';
 
 		?>

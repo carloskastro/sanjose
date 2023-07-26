@@ -58,17 +58,11 @@
 	
 	<main class="container py-5 form-signin w-100 m-auto">
 		<?php
-		if (isset($msg2)) {
-			echo '
-			<div class="alert alert-success alert-dismissible">
-			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-			<strong>'.$msg1.'!</strong>
-			</div>';
-		}else{
+		if (isset($msg)) {
 			echo '
 			<div class="alert alert-danger alert-dismissible">
 			<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-			<strong>'.$msg2.'!</strong>
+			<strong>'.$msg.'!</strong>
 			</div>';
 		}
 

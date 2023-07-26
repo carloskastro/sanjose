@@ -1,14 +1,16 @@
 <?php
-$servername="localhost";
-$username="root";
-$password="";
-$dbname="sena";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "sena";
+$msg=null;
 
-try{
-	$conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8",$username,$password);
-	$conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-	//echo "Conexión OK";
-}catch(PDOException $e){
-	echo "Conexión Falló".$e->getMessage();
+try {
+  $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  //$msg="<i class='bi bi-check-circle'></i> Connection OK";
+} catch(PDOException $e) {
+  $msg="<i class='bi bi-x-circle'></i> Connection failed: " . $e->getMessage();
 }
 ?>
