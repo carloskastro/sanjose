@@ -24,7 +24,7 @@
 	<link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
 	<script type="text/javascript" src="../assets/js/bootstrap.bundle.js"></script>
 	<!--Styles Bootstrap Icons-->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 	<!--Styles Icons Fontawesome -->
 	<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
 </head>
