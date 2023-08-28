@@ -90,11 +90,12 @@ if (isset($_GET['delete'])) {
 	<?php
 	/*Confirmación de registro de datos*/
 		if ($md!='' && $col!='') {
-			echo '
-			<div class="alert alert-'.$col.' alert-dismissible">
-			<button type="button" class="btn-close" data-bs-dismiss="alert" onclick="location.href="homeadm?page=tableadm""></button>
-			<strong>'.$md.'!</strong>
+			?>
+			<div class="alert alert-<?php echo $col; ?> alert-dismissible">
+			<button type="button" class="btn-close" data-bs-dismiss="alert" onclick="location.href='homeadm?page=tableadm'"></button>
+			<strong><?php echo $md; ?> !</strong>
 			</div>';
+		<?php
 		}
 	?>	
 
@@ -122,9 +123,44 @@ if (isset($_GET['delete'])) {
 				<td><?php echo $view['nombre']; ?></td>
 				<td><?php echo $view['apellido']; ?></td>
 				<td><?php echo $view['fnac']; ?></td>
-				<td><div class="btn-group"><a href="" class="btn btn-outline-primary btn-md
-					" title="Editar un Registro"><i class="bi bi-pencil-fill"></i></a><a href="homeadm?page=tableadm&delete=<?php echo $view['idadministrador']; ?>" class="btn btn-outline-danger btn-md" title="Eliminar un Registro"><i class="bi bi-trash3-fill"></i></a></div></td>
+				<td>
+					<div class="btn-group">
+						<!--Boton Editar-->
+						<a href="" class="btn btn-outline-primary btn-md" title="Editar un Registro"><i class="bi bi-pencil-fill"></i></a>
+						<!--Boton Eliminar-->
+						<button type="button" data-bs-toggle="modal" data-bs-target="#eliminar<?php echo $view['idadministrador']; ?>" class="btn btn-outline-danger btn-md" title="Eliminar un Registro"><i class="bi bi-trash3-fill"></i></button>
+					</div>
+				</td>
 			</tr>
+
+			<!-- The Modal Eliminar registro-->
+			<div class="modal fade" id="eliminar<?php echo $view['idadministrador']; ?>">
+			  <div class="modal-dialog modal-dialog-centered">
+			    <div class="modal-content">
+
+			      <!-- Modal Header -->
+			      <div class="modal-header">
+			        <h4 class="modal-title">Mensaje de Alerta</h4>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			      </div>
+
+			      <!-- Modal body -->
+			      <div class="modal-body">
+			        Realmente desea eliminar el registro con documento:
+			        <p><?php echo $view['documento'] ?></p>
+			      </div>
+
+			      <!-- Modal footer -->
+			      <div class="modal-footer">
+			      	<a href="homeadm?page=tableadm&delete=<?php echo $view['idadministrador']; ?>" class="btn btn-success" title="Confirmar">Confirmar</a>
+			        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+			      </div>
+
+			    </div>
+			  </div>
+			</div>
+			<!-- The Modal Eliminar registro-->
+
 		<?php } ?>
 		</tbody>
 		
