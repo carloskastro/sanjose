@@ -27,6 +27,12 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 	<!--Styles Icons Fontawesome -->
 	<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+	<script>
+    // EVITAR REENVIO DE DATOS.
+        if (window.history.replaceState) { // verificamos disponibilidad
+        window.history.replaceState(null, null, location.href);
+    }
+    </script>
 </head>
 <body>
 	<?php
@@ -56,6 +62,9 @@
 					<ul class="navbar-nav me-auto">
 						<li class="nav-item">
 							<a class="nav-link" href="#">Inicio</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="?page=buscar">Buscar</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="?page=tableadm">Administrador</a>

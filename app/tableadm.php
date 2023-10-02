@@ -69,18 +69,16 @@
 if (is_array($data)) {
 
 /*eliminar datos de la tabla admin*/
-$md=null;
-$col=null;
+$msg=null;
+
 if (isset($_GET['delete'])) {
 	$delete = $conn->prepare('DELETE FROM administrador WHERE idadministrador=:id');
 	$delete->bindParam(':id',$_GET['delete']);
 	$delete->execute();
 	if($delete){
-		$md="Se eliminó con éxito";
-		$col="success";
+		$msg=array("Se eliminó con éxito","success");
 	}else{
-		$md="Error al eliminar";
-		$col="danger";
+		$msg=array("Error al eliminar","danger");
 	}
 }
 /*eliminar datos de la tabla admin*/
@@ -89,11 +87,11 @@ if (isset($_GET['delete'])) {
 <div class="container py-5">
 	<?php
 	/*Confirmación de registro de datos*/
-		if ($md!='' && $col!='') {
+		if (isset($msg)) {
 			?>
-			<div class="alert alert-<?php echo $col; ?> alert-dismissible">
+			<div class="alert alert-<?php echo $msg[1]; ?> alert-dismissible">
 			<button type="button" class="btn-close" data-bs-dismiss="alert" onclick="location.href='homeadm?page=tableadm'"></button>
-			<strong><?php echo $md; ?> !</strong>
+			<strong><?php echo $msg[0]; ?> !</strong>
 			</div>';
 		<?php
 		}
