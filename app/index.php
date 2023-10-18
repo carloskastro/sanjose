@@ -53,6 +53,7 @@
 	<?php
 	require_once 'conn.php';
 	session_start();
+	$msg=null;
 
 	if (isset($_POST['validar'])) {
 		 //función para consultar info a la base de datos en SQL
@@ -70,7 +71,7 @@
 						$_SESSION['tipouser'] = $data['tipouser'];
 						header('location: homeadm');
 					} else {
-						echo "Contraseña incorrecta";
+						$msg="Contraseña incorrecta";
 					}
 					
 					break;
@@ -81,17 +82,17 @@
 						header('location: homeap');
 
 					} else {
-						echo "Contraseña incorrecta";
+						$msg="Contraseña incorrecta";
 					}
 					break;
 				
 				default:
-					echo "No fue encontrado un usuario";
+					$msg="No fue encontrado un usuario";
 					break;
 			}			
 			
 		}else{
-			echo "Datos incorrectos";
+			$msg="Datos incorrectos";
 		}
 	}
 
