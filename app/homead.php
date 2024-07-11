@@ -7,8 +7,8 @@ if (!$loginadm->logged_in()) {
     $loginadm->redirect('./');
 }
 
-$stmt = $loginadm->runQuery("SELECT * FROM adm WHERE id=:id");
-$stmt->execute(array(":id" => $_SESSION['admsession']));
+$stmt = $loginadm->runQuery("SELECT * FROM adm WHERE idadm=:idadm");
+$stmt->execute(array(":idadm" => $_SESSION['admsession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
@@ -69,6 +69,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 </div>
             </div>
         </div>
+        <!-- The Modal logout-->
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Logo</a>
