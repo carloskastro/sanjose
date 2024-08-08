@@ -9,8 +9,8 @@ if (isset($_POST['btnlogin'])) {
 
     if ($admlogin->login($email, $pass)) {
         header('location: homead');
+        }
     }
-}
 
 ?>
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ if (isset($_POST['btnlogin'])) {
 </head>
 
 <body>
-    <main class="form-signin m-auto pt-5">
+    <main class="form-signin m-auto pt-5 mt-4">
         <!--Section Alerts-->
         <?php if (isset($_GET['error'])) { ?>
             <div class="alert alert-danger alert-dismissible">
@@ -77,17 +77,17 @@ if (isset($_POST['btnlogin'])) {
                             <input class="form-check-input" type="checkbox" name="remember"> Recuerdame
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-primary" name="btnlogin">Ingresar</button>
+                    <button type="submit" class="float-end btn btn-primary" name="btnlogin">Ingresar</button>
                     <a href="reg_adm">Registro del Admin</a>
                 </form>
+            </div>
+            <div class="card-footer">
+                <p class="text-center text-light" title="CACJX">Carlos Andres Castro -
+                &copy;Copyright 2024</p>
             </div>
         </div>
 
     </main>
-    <footer class="bg-dark">
-        <p class="my-5 text-center text-light" data-bs-toggle="tooltip" title="CACJX">Carlos Andres Castro - Copyright©
-            2024</p>
-    </footer>
 
     <script type="text/javascript" src="../assets/js/bootstrap.bundle.js"></script>
     <script src="../assets/js/password.viewer.js"></script>

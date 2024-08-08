@@ -37,7 +37,7 @@
     }
     public function upd_adm($idadm,$fname,$lname,$email){
         try{
-            $temp = $this->conn->prepare("UPDATE adm SET fname=?, lname=?,email=? WHERE idadm=?");
+            $temp = $this->conn->prepare("UPDATE adm SET fname=?, lname=?,email=? WHERE id=?");
             $temp->bindparam(1, $fname);
             $temp->bindparam(2, $lname);
             $temp->bindparam(3, $email);
@@ -48,6 +48,18 @@
             echo $err->getMessage();
         }
     }
+
+    public function delete_adm($delidadm){
+        try{
+            $temp = $this->conn->prepare("DELETE FROM adm WHERE id=?");
+            $temp->bindparam(1, $delidadm);
+            $temp->execute();
+            return $temp;
+        }catch (PDOException $err){
+            //echo $err->getMessage();
+        }
+    }  
+
     public function login($email,$pass){
         try{
             $temp = $this->conn->prepare('SELECT * FROM adm WHERE email=:adm_email');
@@ -55,7 +67,7 @@
             $admrow = $temp->fetch(PDO::FETCH_ASSOC);
 
             if ($admrow['pass'] == md5($pass)) {
-                $_SESSION['admsession'] = $admrow['idadm'];
+                $_SESSION['admsession'] = $admrow['id'];
                 return true;
             }else {
                 header('location: ./?error');

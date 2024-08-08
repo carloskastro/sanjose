@@ -7,7 +7,7 @@ if (!$loginadm->logged_in()) {
     $loginadm->redirect('./');
 }
 
-$stmt = $loginadm->runQuery("SELECT * FROM adm WHERE idadm=:idadm");
+$stmt = $loginadm->runQuery("SELECT * FROM adm WHERE id=:idadm");
 $stmt->execute(array(":idadm" => $_SESSION['admsession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -83,7 +83,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                             <a class="nav-link" href="homead">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="?pg=files_adm">Publicaciones</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="?pg=perfilad">Perfil</a>
