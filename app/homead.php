@@ -7,7 +7,7 @@ if (!$loginadm->logged_in()) {
     $loginadm->redirect('./');
 }
 
-$stmt = $loginadm->runQuery("SELECT * FROM adm WHERE id=:idadm");
+$stmt = $loginadm->runQuery("SELECT * FROM adm WHERE idadm=:idadm");
 $stmt->execute(array(":idadm" => $_SESSION['admsession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 

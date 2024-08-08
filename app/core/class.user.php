@@ -1,7 +1,7 @@
 <?php 
  require_once 'class.dbconfig.php';
 
- class adm
+ class user
  {
     //declarar variables
     private $conn;
@@ -19,11 +19,11 @@
       return $temp;
     }
 
-    public function reg_adm($fname,$lname,$email,$pass)
+    public function reguser($fname,$lname,$email,$pass)
     {
         try{
             $epass = md5($pass);
-            $temp = $this->conn->prepare("INSERT INTO adm (fname,lname,email,pass) VALUES (?,?,?,?)");
+            $temp = $this->conn->prepare("INSERT INTO user (fname,lname,email,pass) VALUES (?,?,?,?)");
             $temp->bindparam(1, $fname);
             $temp->bindparam(2, $lname);
             $temp->bindparam(3, $email);
@@ -35,9 +35,9 @@
             echo $err->getMessage();
         }
     }
-    public function upd_adm($idadm,$fname,$lname,$email){
+    public function upduser($idadm,$fname,$lname,$email){
         try{
-            $temp = $this->conn->prepare("UPDATE adm SET fname=?, lname=?,email=? WHERE idadm=?");
+            $temp = $this->conn->prepare("UPDATE user SET fname=?, lname=?,email=? WHERE id=?");
             $temp->bindparam(1, $fname);
             $temp->bindparam(2, $lname);
             $temp->bindparam(3, $email);
@@ -49,9 +49,9 @@
         }
     }
 
-    public function delete_adm($delidadm){
+    public function deluser($delidadm){
         try{
-            $temp = $this->conn->prepare("DELETE FROM adm WHERE id=?");
+            $temp = $this->conn->prepare("DELETE FROM user WHERE id=?");
             $temp->bindparam(1, $delidadm);
             $temp->execute();
             return $temp;
@@ -62,12 +62,12 @@
 
     public function login($email,$pass){
         try{
-            $temp = $this->conn->prepare('SELECT * FROM adm WHERE email=:adm_email');
-            $temp->execute(array(":adm_email" => $email));
+            $temp = $this->conn->prepare('SELECT * FROM user WHERE email=:useremail');
+            $temp->execute(array(":useremail" => $email));
             $admrow = $temp->fetch(PDO::FETCH_ASSOC);
 
             if ($admrow['pass'] == md5($pass)) {
-                $_SESSION['admsession'] = $admrow['idadm'];
+                $_SESSION['usersession'] = $admrow['id'];
                 return true;
             }else {
                 header('location: ./?error');

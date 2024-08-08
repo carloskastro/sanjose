@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'core/class.adm.php';
+
 $admlogin = new adm();
 
 if (isset($_POST['btnlogin'])) {
@@ -78,7 +79,8 @@ if (isset($_POST['btnlogin'])) {
                         </label>
                     </div>
                     <button type="submit" class="float-end btn btn-primary" name="btnlogin">Ingresar</button>
-                    <a href="reg_adm">Registro del Admin</a>
+                    <a href="regadm">Registro del Admin</a>
+                    <a href="reguser">Registro Usuario</a>
                 </form>
             </div>
             <div class="card-footer">
